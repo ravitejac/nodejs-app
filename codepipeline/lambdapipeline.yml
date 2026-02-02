@@ -111,7 +111,7 @@ Resources:
                 Owner: !Ref GitHubOwner
                 Repo: !Ref GitHubRepo
                 Branch: !Ref GitHubBranch
-                OAuthToken: !Sub "${GitHubTokenSecretName}"
+                OAuthToken: !Sub "{{resolve:secretsmanager:${GitHubTokenSecretName}:SecretString}}"
                 PollForSourceChanges: true 
               Namespace: SourceVariables   
         - Name: StagingBuild 

@@ -1,0 +1,10 @@
+[
+    {
+        "ParameterKey": "repositoryName",
+        "ParameterValue": "saivajra-ticket-integration-repo"
+    },
+    {
+        "ParameterKey": "CapitalizedProjectName",
+        "ParameterValue": "saivajra-ticket-integration"
+    }
+]

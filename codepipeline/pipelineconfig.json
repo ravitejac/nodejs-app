@@ -1,0 +1,38 @@
+[
+        {
+            "ParameterKey": "ProjectName",
+            "ParameterValue": "nodejs-app"
+        },
+        {
+            "ParameterKey": "CapitalizedProjectName",
+            "ParameterValue": "nodejs-app"
+        },
+        {
+            "ParameterKey": "GitHubOwner",
+            "ParameterValue": "ravitejac"
+        },
+        {
+            "ParameterKey": "GitHubRepo",
+            "ParameterValue": "nodejs-app"
+        },
+        {
+            "ParameterKey": "GitHubBranch",
+            "ParameterValue": "main"
+        },
+        {
+            "ParameterKey": "GitHubTokenSecretName",
+            "ParameterValue": "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"
+        },
+        {
+            "ParameterKey": "EcrRepoName",
+            "ParameterValue": "nodejs-app"
+        },
+        {
+            "ParameterKey": "ArtifactsBucket",
+            "ParameterValue": "saivajrastg"
+        },
+        {
+            "ParameterKey": "ExportLambdaRoleName",
+            "ParameterValue": "saipaa-api-role"
+        }
+]

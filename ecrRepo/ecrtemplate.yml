@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: 2010-09-09 
+Description: Creating ECR Repo using cloudformation 
+
+Parameters:    
+  repositoryName:
+    Type: String
+    Default: name of repository
+  CapitalizedProjectName:
+    Type: String
+    Default: give capitalize project name
+Resources:
+  MyRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Ref repositoryName
+Outputs: 
+  ECRRepoDomainUrl: 
+    Description: ecr repo name for url.
+    Value: !GetAtt MyRepository.RepositoryUri
+    Export: 
+      Name: !Sub '${CapitalizedProjectName}ECRRepo'

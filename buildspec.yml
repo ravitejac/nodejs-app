@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - echo ${CODEBUILD_RESOLVED_SOURCE_VERSION:=latest}
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - REPOSITORY_URI_SERVER=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}
+      - IMAGE_TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION:=latest}
+  build:
+    commands:
+      - pwd
+      - echo Build started on `date`
+      - echo Building the Docker image... 
+      - docker build -t $REPOSITORY_URI_SERVER:latest .
+      - docker tag $REPOSITORY_URI_SERVER:latest $REPOSITORY_URI_SERVER:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $REPOSITORY_URI_SERVER:latest
+      - docker push $REPOSITORY_URI_SERVER:$IMAGE_TAG
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`    
+
+artifacts:
+  base-directory: app
+  files:
+    - '**/*'
+  type: zip

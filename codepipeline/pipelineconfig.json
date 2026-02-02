@@ -21,7 +21,7 @@
         },
         {
             "ParameterKey": "GitHubTokenSecretName",
-            "ParameterValue": "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"
+            "ParameterValue": "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"
         },
         {
             "ParameterKey": "EcrRepoName",

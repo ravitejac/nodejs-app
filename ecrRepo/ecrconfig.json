@@ -1,10 +1,10 @@
 [
     {
         "ParameterKey": "repositoryName",
-        "ParameterValue": "saivajra-ticket-integration-repo"
+        "ParameterValue": "nodejs-app"
     },
     {
         "ParameterKey": "CapitalizedProjectName",
-        "ParameterValue": "saivajra-ticket-integration"
+        "ParameterValue": "nodejs-app"
     }
 ]

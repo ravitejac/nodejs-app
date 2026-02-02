@@ -30,30 +30,30 @@ Parameters:
     Type: String 
     Default: give lambda role name
 Resources: 
-  EventRule:
-    Type: AWS::Events::Rule
-    Properties:
-      EventPattern:
-        source:
-          - aws.codecommit
-        detail-type:
-          - 'CodeCommit Repository State Change'
-        resources:
-          - !Join [ '', [ 'arn:aws:codecommit:', !Ref 'AWS::Region', ':', !Ref 'AWS::AccountId', ':', !Ref SourceRepositoryName ] ]
-        detail:
-          event:
-            - referenceCreated
-            - referenceUpdated
-          referenceType:
-            - branch
-          referenceName:
-            - !Ref SourceBranchName
-      Targets:
-        -
-          Arn: 
-            !Join [ '', [ 'arn:aws:codepipeline:', !Ref 'AWS::Region', ':', !Ref 'AWS::AccountId', ':', !Ref CodePipeline ] ]
-          RoleArn: !Join [ '', [ 'arn:aws:iam::', !Ref 'AWS::AccountId', ':', 'role', '/', 'saivajra-codepipeline-event-role' ] ]
-          Id: codepipeline-AppPipeline
+#   EventRule:
+#     Type: AWS::Events::Rule
+#     Properties:
+#       EventPattern:
+#         source:
+#           - aws.codecommit
+#         detail-type:
+#           - 'CodeCommit Repository State Change'
+#         resources:
+#           - !Join [ '', [ 'arn:aws:codecommit:', !Ref 'AWS::Region', ':', !Ref 'AWS::AccountId', ':', !Ref SourceRepositoryName ] ]
+#         detail:
+#           event:
+#             - referenceCreated
+#             - referenceUpdated
+#           referenceType:
+#             - branch
+#           referenceName:
+#             - !Ref GitHubBranch
+#       Targets:
+#         -
+#           Arn: 
+#             !Join [ '', [ 'arn:aws:codepipeline:', !Ref 'AWS::Region', ':', !Ref 'AWS::AccountId', ':', !Ref CodePipeline ] ]
+#           RoleArn: !Join [ '', [ 'arn:aws:iam::', !Ref 'AWS::AccountId', ':', 'role', '/', 'saivajra-codepipeline-event-role' ] ]
+#           Id: codepipeline-AppPipeline
   CodeBuildProject: 
     Type: AWS::CodeBuild::Project 
     Properties: 
@@ -112,7 +112,7 @@ Resources:
                 Repo: !Ref GitHubRepo
                 Branch: !Ref GitHubBranch
                 OAuthToken: !Sub "${GitHubTokenSecretName}"
-                PollForSourceChanges: false 
+                PollForSourceChanges: true 
               Namespace: SourceVariables   
         - Name: StagingBuild 
           Actions: 
